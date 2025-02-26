@@ -2,6 +2,8 @@
 
 This folder contains the documentation for the project, built using [MkDocs](https://www.mkdocs.org/). `mkdocs` and all the required dependencies for building the docs are installed when you install this project with dev dependencies.
 
+**Note: To make this work in your repo you will need to update your repo settings under `Settings/Pages/ so that docs are deployed from the`gh-pages` branch.**
+
 ## Writing Documentation
 
 - Documentation is written in **Markdown (`.md`)** files.
