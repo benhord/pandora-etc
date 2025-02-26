@@ -1,9 +1,9 @@
 [project]
-name = "packagename"
+name = "pandoraetc"
 version = "0.1.0"
-description = ""
+description = "A package to calculate the exposure time necessary for observations with the Pandora SmallSat."
 authors = [
-    {name = "Christina Hedges",email = "christina.l.hedges@nasa.gov"}
+    {name = "Ben Hord",email = "benjamin.j.hord@nasa.gov"}
 ]
 readme = "README.md"
 requires-python = ">=3.9"
