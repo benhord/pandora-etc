@@ -105,6 +105,12 @@ The default logger level is set in the config file, but you can update this in y
 
 This project uses [Poetry](https://python-poetry.org/) for dependency management and packaging.
 
+Make sure you have poetry installed on your machine
+
+  ```sh
+  pip install --upgrade poetry
+  ```
+
 After you clone the repository and update to your new package name you will need to install the package using
 
   ```sh

@@ -12,6 +12,8 @@ This folder contains the documentation for the project, built using [MkDocs](htt
 - The main configuration file is `mkdocs.yml`, where you can define site settings, navigation structure, themes, and extensions.
 - Place new documentation pages inside this `docs/` folder and link them in `mkdocs.yml`.
 
+You should update the `mkdocs.yml` file to change the name, icon and URL for your repository, instead of this one.
+
 ## Building and Serving the Docs Locally
 
 To preview the documentation locally, run:
