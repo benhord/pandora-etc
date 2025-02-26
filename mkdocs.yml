@@ -1,4 +1,7 @@
 site_name: packagename
+site_url: https://pandoramission.github.io/pandora-blank/
+docs_dir: docs
+
 nav:
   - Home: README.md
   - API: apidocs.md
@@ -7,10 +10,31 @@ nav:
 theme:
   name: "material"
   icon:
-    logo: material/clipboard
+    logo: material/checkbox-blank
   features:
     - content.code.copy
     - content.code.annotate 
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
 repo_url: https://github.com/pandoramission/pandora-blank
 plugins:
   - search
@@ -27,7 +51,11 @@ plugins:
             show_source: false
             filters:
               - "!^_"
+            heading_level: 2  # Ensures API docs have an H2 header for structure
 markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true
   - tables
