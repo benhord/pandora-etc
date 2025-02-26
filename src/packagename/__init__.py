@@ -70,7 +70,9 @@ class PandoraLogger(logging.Logger):
             self.spinner_event = None
 
     def _spinner(self, message):
-        with self.handler.console.status("[bold green]" + message) as status:  # noqa
+        with self.handler.console.status(
+            "[bold green]" + message
+        ) as status:  # noqa
             while not self.spinner_event.is_set():
                 time.sleep(0.1)
 
@@ -135,7 +137,9 @@ def display_config() -> pd.DataFrame:
     dfs = []
     for section in config.sections():
         df = pd.DataFrame(
-            np.asarray([(key, value) for key, value in dict(config[section]).items()])
+            np.asarray(
+                [(key, value) for key, value in dict(config[section]).items()]
+            )
         )
         df["section"] = section
         df.columns = ["key", "value", "section"]
