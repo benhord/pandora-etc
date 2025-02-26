@@ -1,0 +1,30 @@
+site_name: packagename
+nav:
+  - Home: README.md
+  
+theme:
+  name: "material"
+  icon:
+    logo: material/clipboard
+repo_url: https://github.com/pandoramission/pandora-blank
+plugins:
+  - search
+  - include-markdown
+  - mkdocstrings:
+      watch:
+        - src/packagename
+      default_handler: python      
+      handlers:
+        python:
+          options:
+            show_source: false
+            filters:
+              - "!^_"
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - tables
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
