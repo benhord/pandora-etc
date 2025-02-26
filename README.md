@@ -75,52 +75,97 @@ If they change the configuration they can save it using
   save_config(config)
   ```
 
+Users can find where the configuration file is stored using
+
+  ```python
+  from packagename import CONFIGDIR
+  print(CONFIGDIR)
+  ```
+
 ## Using the Logging System
 
-The package includes a logging system using `RichHandler` for formatted console output.
-
-- To create a logger instance:
+The package includes a logging system using `RichHandler` for formatted console output. If you clone this repo, you will automatically have a logger. You can use it like this:
 
   ```python
-  from packagename import get_logger
-  logger = get_logger("my_logger")
-  ```
-
-- Set the log level dynamically:
-
-  ```python
-  logger.setLevel("DEBUG")
-  ```
-
-- Use it for logging messages:
-
-  ```python
+  from packagename import logger
   logger.info("This is an info message")
   logger.warning("This is a warning message")
+  ```
+
+The default logger level is set in the config file, but you can update this in your session using the following, where I set the logger level to `"INFO"`.
+
+  ```python
+  from packagename import logger
+  logger.setLevel("INFO")
   ```
 
 ## Managing Dependencies with Poetry
 
 This project uses [Poetry](https://python-poetry.org/) for dependency management and packaging.
 
-- Install dependencies:
+After you clone the repository and update to your new package name you will need to install the package using
 
   ```sh
   poetry install
   ```
 
-- Add a new package:
+(If you do not update the package name you will install a python package called `packagename`.)
+
+To add new dependencies to your package you can use
 
   ```sh
-  poetry add package-name
+  poetry add dependency
   ```
 
 - Add a development dependency:
 
   ```sh
-  poetry add --group dev package-name
+  poetry add --group dev dependency
   ```
 
-  Development dependencies are only needed for development and are not included when installing the package in production.
+Development dependencies are only needed for development and are not included when installing the package in production. Add development dependencies for things like testing and building docs.
+
+If you are using the package and need these development dependencies you should use
+
+  ```sh
+  poetry install --with dev
+  ```
+
+If you think your versions of packages are out of date you can run
+
+  ```sh
+  poetry update
+  ```
 
 For more details, check the [Poetry documentation](https://python-poetry.org/docs/).
+
+## Updating the package version and publishing to pypi
+
+The package version is automaticaly found from the `pyproject.toml` file. This means when you are ready to release a new version you only need to follow these steps:
+
+1. Update the version number in the `pyproject.toml` file
+2. Build the distribution using
+
+    ```sh
+    poetry build
+    ```
+
+3. Publish the package to pypi
+
+    ```sh
+    poetry publish
+    ```
+
+You should consider using the industry standard for updating version numbers which is major.minor.patch
+
+- Major version changes indicate breaking changes that may not be backward-compatible.
+- Minor version changes introduce new features in a backward-compatible manner.
+- Patch version changes include bug fixes or small improvements that do not affect compatibility.
+
+For example, if a package is at version 1.2.3, then:
+
+- Increasing the major version to 2.0.0 means changes were introduced that break the API
+- Increasing the minor version to 1.3.0 means new features were added while maintaining compatibility.
+- Increasing the patch version to 1.2.4 means minor bug fixes or tweaks were made without changing functionality.
+
+It is ok to release new versions often.
