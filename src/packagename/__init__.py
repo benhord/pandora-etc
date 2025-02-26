@@ -20,7 +20,7 @@ from importlib.metadata import PackageNotFoundError, version  # noqa
 # Third-party
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
-from appdirs import user_config_dir  # noqa: E402
+from appdirs import user_config_dir, user_data_dir  # noqa: E402
 
 
 def get_version():
@@ -70,9 +70,7 @@ class PandoraLogger(logging.Logger):
             self.spinner_event = None
 
     def _spinner(self, message):
-        with self.handler.console.status(
-            "[bold green]" + message
-        ) as status:  # noqa
+        with self.handler.console.status("[bold green]" + message) as status:  # noqa
             while not self.spinner_event.is_set():
                 time.sleep(0.1)
 
@@ -88,6 +86,7 @@ def reset_config():
     config = configparser.ConfigParser()
     config["SETTINGS"] = {
         "log_level": "WARNING",
+        "data_dir": user_data_dir("pandorapsf"),
     }
     with open(CONFIGPATH, "w") as configfile:
         config.write(configfile)
@@ -129,14 +128,14 @@ def save_config(config: configparser.ConfigParser) -> None:
 
 config = load_config()
 
+DATADIR = config["SETTINGS"]["data_dir"]
+
 
 def display_config() -> pd.DataFrame:
     dfs = []
     for section in config.sections():
         df = pd.DataFrame(
-            np.asarray(
-                [(key, value) for key, value in dict(config[section]).items()]
-            )
+            np.asarray([(key, value) for key, value in dict(config[section]).items()])
         )
         df["section"] = section
         df.columns = ["key", "value", "section"]
