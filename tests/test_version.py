@@ -1,5 +1,5 @@
 # First-party/Local
-from packagename import __version__
+from pandoraetc import __version__
 
 
 def test_example():
