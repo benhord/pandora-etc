@@ -137,7 +137,37 @@ If you think your versions of packages are out of date you can run
   poetry update
   ```
 
+Poetry installs unique copies of your dependencies so you can work on multiple packages without sharing versions of dependencies. Therefore, to work within this ecosystem you must use `poetry run` to run anything, e.g.
+
+Instead of using
+
+    ```sh
+    python
+    ```
+
+You would use
+
+    ```sh
+    poetry run python
+    ```
+
+Instead of using
+
+    ```sh
+    jupyter-lab
+    ```
+
+Use
+
+    ```sh
+    poetry run jupyter-lab
+    ```
+
 For more details, check the [Poetry documentation](https://python-poetry.org/docs/).
+
+## Testing the package
+
+The `Makefile` in this repository enables you to
 
 ## Updating the package version and publishing to pypi
 
@@ -169,3 +199,9 @@ For example, if a package is at version 1.2.3, then:
 - Increasing the patch version to 1.2.4 means minor bug fixes or tweaks were made without changing functionality.
 
 It is ok to release new versions often.
+
+## Setting up the README for your package
+
+Your package must include a README document. You should use this file (`README.md`) as your README document. Your can delete all information above this line, and leave the information below as your README file. You should update the URLs in the badges below to ensure they work for you.
+
+<a href="https://github.com/pandoramission/pandora-blank/actions/workflows/tests.yml"><img src="https://github.com/pandoramission/pandora-blank/workflows/tests/badge.svg" alt="Test status"/></a> <a href="https://github.com/pandoramission/pandora-blank/actions/workflows/black.yml"><img src="https://github.com/pandoramission/pandora-blank/workflows/black/badge.svg" alt="black status"/></a> <a href="https://github.com/pandoramission/pandora-blank/actions/workflows/flake8.yml"><img src="https://github.com/pandoramission/pandora-blank/workflows/flake8/badge.svg" alt="flake8 status"/></a> [![Generic badge](https://img.shields.io/badge/documentation-live-blue.svg)](https://pandoramission.github.io/pandora-blank/)

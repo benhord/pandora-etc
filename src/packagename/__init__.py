@@ -14,15 +14,13 @@ TESTDIR = "/".join(PACKAGEDIR.split("/")[:-2]) + "/tests/"
 PANDORASTYLE = glob(f"{PACKAGEDIR}/data/pandora.mplstyle")
 
 # Standard library
+import configparser  # noqa: E402
 from importlib.metadata import PackageNotFoundError, version  # noqa
 
-
-# Standard library
-import configparser  # noqa: E402
-
-import numpy as np
-import pandas as pd
-from appdirs import user_config_dir, user_data_dir  # noqa: E402
+# Third-party
+import numpy as np  # noqa: E402
+import pandas as pd  # noqa: E402
+from appdirs import user_config_dir  # noqa: E402
 
 
 def get_version():
@@ -72,7 +70,9 @@ class PandoraLogger(logging.Logger):
             self.spinner_event = None
 
     def _spinner(self, message):
-        with self.handler.console.status("[bold green]" + message) as status:  # noqa
+        with self.handler.console.status(
+            "[bold green]" + message
+        ) as status:  # noqa
             while not self.spinner_event.is_set():
                 time.sleep(0.1)
 
@@ -134,7 +134,9 @@ def display_config() -> pd.DataFrame:
     dfs = []
     for section in config.sections():
         df = pd.DataFrame(
-            np.asarray([(key, value) for key, value in dict(config[section]).items()])
+            np.asarray(
+                [(key, value) for key, value in dict(config[section]).items()]
+            )
         )
         df["section"] = section
         df.columns = ["key", "value", "section"]
